@@ -1,6 +1,6 @@
 <?php
 
-
+require_once (__DIR__.'/vendor/autoload.php');
 
 
 event_bind('module.content.front.render', function ($data) {
