@@ -1,6 +1,6 @@
 <?php
 
-require_once (__DIR__.'/vendor/autoload.php');
+require_once(__DIR__ . '/vendor/autoload.php');
 
 
 event_bind('module.content.front.render', function ($data) {
@@ -17,7 +17,7 @@ event_bind('module.content.front.render', function ($data) {
         $content_data = content_data($item['id']);
 
         $item['in_stock'] = false;
-        if(isset($content_data['qty']) and $content_data['qty'] != 0){
+        if (isset($content_data['qty']) and $content_data['qty'] != 0) {
             $item['in_stock'] = true;
         }
 
@@ -25,11 +25,16 @@ event_bind('module.content.front.render', function ($data) {
         $schema_item['name'] = $item['title'];
         $schema_item['description'] = $item['description'];
         $schema_item['image'] = get_picture($item['id']);
-        $schema_item['sku'] = $item['url_api'];
+        if (isset($content_data['sku'])) {
+            $schema_item['sku'] = $content_data['sku'];
+        } else {
+            $schema_item['sku'] = content_link($item['id']);
+
+        }
         $schema_item['offers'] = [
             'url' => $item['link'],
             'price' => $item['price'],
-            'priceCurrency' =>$currency,
+            'priceCurrency' => $currency,
             'availability' => ($item['in_stock'] ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"),
             'sku' => $item['url_api']
         ];
