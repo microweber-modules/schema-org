@@ -15,6 +15,7 @@ event_bind('module.content.front.render', function ($data) {
         }
 
         $content_data = content_data($item['id']);
+        $content_link = content_link($item['id']);
 
         $item['in_stock'] = false;
         if (isset($content_data['qty']) and $content_data['qty'] != 0) {
@@ -36,7 +37,7 @@ event_bind('module.content.front.render', function ($data) {
             'price' => $item['price'],
             'priceCurrency' => $currency,
             'availability' => ($item['in_stock'] ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"),
-            'sku' => $item['url_api']
+            'sku' => $content_link
         ];
 
         $json_arr[] = $schema_item;
