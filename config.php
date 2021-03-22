@@ -8,4 +8,4 @@ $config['ui'] = false;
 $config['ui_admin'] = false;
 $config['categories'] = "other";
 $config['position'] = "100";
-$config['version'] = 0.2;
+$config['version'] = 0.3;
