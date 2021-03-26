@@ -6,6 +6,12 @@
   "description": "Schema.org",
   "license": "MIT",
   "homepage": "https://www.microweber.org",
+  "authors": [
+    {
+      "name": "MW Team",
+      "email": "team@microweber.com"
+    }
+  ],
   "keywords": [
     "schema"
   ],
